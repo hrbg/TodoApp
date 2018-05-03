@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1OQ-hz-dsm">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--MY LIST-->
+        <scene sceneID="Qh9-tc-Ljy">
+            <objects>
+                <tableViewController id="hBn-jB-sMi" customClass="ToDoTableViewController" customModule="TodoApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="kag-4E-fYI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="591"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <progressView key="tableHeaderView" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" id="NCu-dQ-Ub0">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="3"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="progressTintColor" name="mainBlueColor"/>
+                            <color key="trackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </progressView>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="50" id="y2G-1i-yh1" customClass="ToDoTableViewCell" customModule="TodoApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="30" width="375" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="y2G-1i-yh1" id="G7u-6v-RLP">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ToDo Item" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aRI-SD-ATY">
+                                            <rect key="frame" x="16" y="5" width="343" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="todoLabel" destination="aRI-SD-ATY" id="fKq-1X-9YZ"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="hBn-jB-sMi" id="Ga6-1i-aoU"/>
+                            <outlet property="delegate" destination="hBn-jB-sMi" id="5R3-4Z-b8N"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="MY LIST" id="dgA-P0-V6L"/>
+                    <connections>
+                        <outlet property="progressView" destination="NCu-dQ-Ub0" id="Ezh-AB-V3J"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IQA-rw-Xvt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="564" y="-53.523238380809602"/>
+        </scene>
+        <!--Container View Controller-->
+        <scene sceneID="rDd-ou-kJw">
+            <objects>
+                <viewController id="1OQ-hz-dsm" customClass="ContainerViewController" customModule="TodoApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Iwa-Ey-N4h">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connection:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ucb-o8-mHs">
+                                <rect key="frame" x="16" y="626" width="97" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nUE-MR-LFG">
+                                <rect key="frame" x="121" y="620.5" width="54" height="33"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <state key="normal" title="Offline">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="triggerConnection:" destination="1OQ-hz-dsm" eventType="touchUpInside" id="s5P-y4-qWx"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c2o-s3-7bL">
+                                <rect key="frame" x="312" y="616" width="40" height="40"/>
+                                <color key="backgroundColor" name="mainBlueColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="fzA-Gb-41D"/>
+                                    <constraint firstAttribute="height" constant="40" id="rPE-R4-esG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="+">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="addNewTodoItem:" destination="1OQ-hz-dsm" eventType="touchUpInside" id="doO-hP-HFS"/>
+                                </connections>
+                            </button>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a3B-fn-K8X">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="591"/>
+                                <connections>
+                                    <segue destination="z2g-Xq-qxl" kind="embed" identifier="TodoSegue" id="MMg-wC-Kyd"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ai1-Dk-af4" firstAttribute="trailing" secondItem="c2o-s3-7bL" secondAttribute="trailing" constant="23" id="2XJ-E8-LTy"/>
+                            <constraint firstItem="ai1-Dk-af4" firstAttribute="bottom" secondItem="ucb-o8-mHs" secondAttribute="bottom" constant="20" id="4L3-1U-ONk"/>
+                            <constraint firstItem="nUE-MR-LFG" firstAttribute="centerY" secondItem="ucb-o8-mHs" secondAttribute="centerY" id="81m-YA-Ou2"/>
+                            <constraint firstItem="nUE-MR-LFG" firstAttribute="leading" secondItem="ucb-o8-mHs" secondAttribute="trailing" constant="8" id="FPJ-dO-NJs"/>
+                            <constraint firstItem="a3B-fn-K8X" firstAttribute="leading" secondItem="ai1-Dk-af4" secondAttribute="leading" id="JCr-XJ-ygI"/>
+                            <constraint firstItem="ucb-o8-mHs" firstAttribute="top" secondItem="a3B-fn-K8X" secondAttribute="bottom" constant="35" id="SBe-6k-p6F"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="nUE-MR-LFG" secondAttribute="trailing" constant="20" symbolic="YES" id="a6O-js-sFo"/>
+                            <constraint firstItem="ucb-o8-mHs" firstAttribute="leading" secondItem="ai1-Dk-af4" secondAttribute="leading" constant="16" id="foY-Bo-e0z"/>
+                            <constraint firstItem="a3B-fn-K8X" firstAttribute="top" secondItem="Iwa-Ey-N4h" secondAttribute="top" id="hDK-qB-uv3"/>
+                            <constraint firstItem="ai1-Dk-af4" firstAttribute="bottom" secondItem="c2o-s3-7bL" secondAttribute="bottom" constant="11" id="mEy-tb-WLQ"/>
+                            <constraint firstItem="ai1-Dk-af4" firstAttribute="trailing" secondItem="a3B-fn-K8X" secondAttribute="trailing" id="rBZ-ah-2QT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ai1-Dk-af4"/>
+                    </view>
+                    <connections>
+                        <outlet property="addButton" destination="c2o-s3-7bL" id="HgL-Os-UXZ"/>
+                        <outlet property="connectionButton" destination="nUE-MR-LFG" id="ozj-gq-OMU"/>
+                        <outlet property="containerView" destination="a3B-fn-K8X" id="0ei-Ht-MCc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kfd-l8-oex" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1159.2" y="-53.523238380809602"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="g0W-F7-jyh">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="z2g-Xq-qxl" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="E1Z-o0-Dud">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="hBn-jB-sMi" kind="relationship" relationship="rootViewController" id="8c6-nH-Fsd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ups-W5-P8a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-257.60000000000002" y="-52.173913043478265"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="mainBlueColor">
+            <color red="0.37254901960784315" green="0.7686274509803922" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
