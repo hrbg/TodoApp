@@ -143,7 +143,7 @@ class ToDoTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        completeItemToggle(indexPath)
+        didMarkAsCompleted(at: indexPath)
     }
 
     
@@ -281,6 +281,25 @@ extension ToDoTableViewController: UISearchResultsUpdating {
 // MARK - Update todo item delegate
 
 extension ToDoTableViewController: UpdatingTodoItemDelegate {
+    func didMarkAsCompleted(at indexPath: IndexPath) {
+        var todoItem = todoItems[indexPath.row]
+        todoItem.toggle()
+        todoItems[indexPath.row] = todoItem
+        setupProgressView()
+        if let cell = tableView.cellForRow(at: indexPath) as? ToDoTableViewCell {
+            cell.todoLabel.attributedText = toggleAttributedText(for: todoItem)
+            
+            UIView.animate(withDuration: 0.1, animations: {
+                cell.transform = cell.transform.scaledBy(x: 1.5, y: 1.5)
+            }, completion: {(success) in
+                UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+                    cell.transform = CGAffineTransform.identity
+                }, completion: nil)
+            })
+        }
+
+    }
+    
     func didChangeTodo(title: String, at indexPath: IndexPath) {
         print(#function)
         var todoItem = todoItems[indexPath.row]
