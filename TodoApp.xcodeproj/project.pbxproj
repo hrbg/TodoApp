@@ -15,6 +15,8 @@
 		221FE87120923FDA009C6951 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221FE87020923FDA009C6951 /* DataManager.swift */; };
 		221FE875209272AD009C6951 /* ToDoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221FE874209272AD009C6951 /* ToDoTableViewCell.swift */; };
 		221FE877209272CD009C6951 /* ToDoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221FE876209272CD009C6951 /* ToDoTableViewController.swift */; };
+		223C47FC20AA27B40095C447 /* NewItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C47FB20AA27B40095C447 /* NewItemViewController.swift */; };
+		223C47FE20AA8CF50095C447 /* UpdatingTodoItemDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C47FD20AA8CF50095C447 /* UpdatingTodoItemDelegate.swift */; };
 		2290945D20975F6E0008860D /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2290945C20975F6E0008860D /* ContainerViewController.swift */; };
 		2290945F209A39A30008860D /* DetailTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2290945E209A39A30008860D /* DetailTodoViewController.swift */; };
 /* End PBXBuildFile section */
@@ -30,6 +32,8 @@
 		221FE87020923FDA009C6951 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		221FE874209272AD009C6951 /* ToDoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTableViewCell.swift; sourceTree = "<group>"; };
 		221FE876209272CD009C6951 /* ToDoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTableViewController.swift; sourceTree = "<group>"; };
+		223C47FB20AA27B40095C447 /* NewItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemViewController.swift; sourceTree = "<group>"; };
+		223C47FD20AA8CF50095C447 /* UpdatingTodoItemDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatingTodoItemDelegate.swift; sourceTree = "<group>"; };
 		2290945C20975F6E0008860D /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		2290945E209A39A30008860D /* DetailTodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTodoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -71,6 +75,7 @@
 				221FE87020923FDA009C6951 /* DataManager.swift */,
 				221FE85B20923AB7009C6951 /* AppDelegate.swift */,
 				221FE86720923AB7009C6951 /* Info.plist */,
+				223C47FF20AA8D060095C447 /* helpers */,
 			);
 			path = TodoApp;
 			sourceTree = "<group>";
@@ -99,6 +104,7 @@
 				2290945C20975F6E0008860D /* ContainerViewController.swift */,
 				221FE876209272CD009C6951 /* ToDoTableViewController.swift */,
 				2290945E209A39A30008860D /* DetailTodoViewController.swift */,
+				223C47FB20AA27B40095C447 /* NewItemViewController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -109,6 +115,14 @@
 				221FE874209272AD009C6951 /* ToDoTableViewCell.swift */,
 			);
 			path = views;
+			sourceTree = "<group>";
+		};
+		223C47FF20AA8D060095C447 /* helpers */ = {
+			isa = PBXGroup;
+			children = (
+				223C47FD20AA8CF50095C447 /* UpdatingTodoItemDelegate.swift */,
+			);
+			path = helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,7 +202,9 @@
 				2290945D20975F6E0008860D /* ContainerViewController.swift in Sources */,
 				221FE87120923FDA009C6951 /* DataManager.swift in Sources */,
 				221FE86F20923E47009C6951 /* TodoItem.swift in Sources */,
+				223C47FE20AA8CF50095C447 /* UpdatingTodoItemDelegate.swift in Sources */,
 				221FE85C20923AB7009C6951 /* AppDelegate.swift in Sources */,
+				223C47FC20AA27B40095C447 /* NewItemViewController.swift in Sources */,
 				221FE875209272AD009C6951 /* ToDoTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -38,26 +38,9 @@ class ToDoTableViewController: UITableViewController {
     }
     
     func addNewTodo() {
-        let addAlert = UIAlertController(title: "New Todo", message: "Enter a title", preferredStyle: .alert)
-        
-        addAlert.addTextField { (textfield:UITextField) in
-            textfield.placeholder = "ToDo Item Title"
-        }
-        
-        addAlert.addAction(UIAlertAction(title: "Create", style: .default, handler: { (action:UIAlertAction) in
-            guard let title = addAlert.textFields?.first?.text else { return }
-            let newTodo = TodoItem(title: title, completed: false, createdAt: Date(), itemIdentifier: UUID())
-            
-            newTodo.saveItem()
-            self.todoItems.append(newTodo)
-            let indexPath = IndexPath(row: self.tableView.numberOfRows(inSection: 0), section: 0)
-            self.tableView.insertRows(at: [indexPath], with: .automatic)
-            self.setupProgressView()
-        }))
-        
-        addAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        self.present(addAlert, animated: true, completion: nil)
+        let newTodo = NewItemViewController()
+        newTodo.todoItemDelegate = self
+        present(newTodo, animated: true, completion: nil)
     }
     
     func showConnectivityAction() {
@@ -281,6 +264,17 @@ extension ToDoTableViewController: UISearchResultsUpdating {
 // MARK - Update todo item delegate
 
 extension ToDoTableViewController: UpdatingTodoItemDelegate {
+    func addedNewItem(with title: String) {
+        print(#function)
+        let newTodo = TodoItem(title: title, completed: false, createdAt: Date(), itemIdentifier: UUID())
+        
+        newTodo.saveItem()
+        self.todoItems.append(newTodo)
+        let indexPath = IndexPath(row: self.tableView.numberOfRows(inSection: 0), section: 0)
+        self.tableView.insertRows(at: [indexPath], with: .automatic)
+        self.setupProgressView()
+    }
+    
     func didMarkAsCompleted(at indexPath: IndexPath) {
         var todoItem = todoItems[indexPath.row]
         todoItem.toggle()
@@ -308,4 +302,5 @@ extension ToDoTableViewController: UpdatingTodoItemDelegate {
         todoItems[indexPath.row] = todoItem
         tableView.reloadData()
     }
+    
 }

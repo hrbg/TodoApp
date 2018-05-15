@@ -8,11 +8,6 @@
 
 import UIKit
 
-protocol UpdatingTodoItemDelegate {
-    func didMarkAsCompleted(at indexPath: IndexPath)
-    func didChangeTodo(title:String, at indexPath: IndexPath)
-}
-
 class DetailTodoViewController: UIViewController {
     
     var todoItem: TodoItem!
@@ -67,6 +62,7 @@ class DetailTodoViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.hidesBackButton = true
         view.backgroundColor = UIColor(named: "detailGrayColor")
+        
         setupViews()
     }
     
