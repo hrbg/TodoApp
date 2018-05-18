@@ -18,6 +18,7 @@ class ContainerViewController: UIViewController {
     
     @IBAction func addNewTodoItem(_ sender: UIButton) {
         todoTableViewController.addNewTodo()
+        bounce(sender)
     }
     
     @IBAction func triggerConnection(_ sender: UIButton) {
@@ -33,6 +34,20 @@ class ContainerViewController: UIViewController {
             todoTableViewController = (segue.destination as! UINavigationController).childViewControllers.first as! ToDoTableViewController
             todoTableViewController.connectionButtonReference = connectionButton
         }
+    }
+    
+    func bounce(_ sender: UIButton) {
+        print(#function)
+        sender.transform = sender.transform.scaledBy(x: 0.5, y: 0.5)
+        UIView.animate(withDuration: 0.4,
+                       delay: 0,
+                       usingSpringWithDamping: 0.7,
+                       initialSpringVelocity: 0.5,
+                       options: .curveEaseInOut,
+                       animations: {
+                        sender.transform = .identity
+        },
+                       completion: nil)
     }
 
 }

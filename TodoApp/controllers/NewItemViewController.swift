@@ -12,6 +12,7 @@ class NewItemViewController: UIViewController {
     
     var todoItemDelegate: UpdatingTodoItemDelegate?
     
+    // MARK: Done Button
     lazy var doneButton: UIButton = {
         let button = UIButton()
         button.setTitle("Add", for: .normal)
@@ -25,39 +26,35 @@ class NewItemViewController: UIViewController {
         button.addTarget(self, action: #selector(bounce(sender:)), for: .touchUpInside)
         return button
     }()
-    
+
+    // MARK: Dismiss Button
     lazy var dismissButon: UIButton = {
-        let button = UIButton()
-        let mainRed = UIColor(named: "mainRedColor")
+        let button      = UIButton()
+        let mainRed     = UIColor(named: "mainRedColor")
+        let cancelImage = UIImage(named: "cancel")?.withRenderingMode(.alwaysTemplate)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Cancel", for: .normal)
+        button.tintColor = mainRed
+        button.setImage(cancelImage, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         button.setTitleColor(mainRed, for: .normal)
-        button.layer.cornerRadius = 20
-        button.layer.borderWidth  = 2
-        button.layer.borderColor  = mainRed?.cgColor
-        button.layer.cornerRadius = 20
         button.addTarget(self, action: #selector(dismissScreen), for: .touchUpInside)
         return button
     }()
     
+    // MARK: Text field
     let newItemTextField: UITextView = {
         let textField = UITextView()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.becomeFirstResponder()
-        textField.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
-//        textField.text = "Placeholder"
-//        textField.textColor = .lightGray
+        textField.font = UIFont.systemFont(ofSize: 22)
+        textField.textContainerInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
         return textField
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.view.backgroundColor = .white
-        
         newItemTextField.delegate = self
-        
         setupViews()
     }
     
@@ -72,7 +69,7 @@ class NewItemViewController: UIViewController {
         newItemTextField.heightAnchor.constraint(equalToConstant: 200).isActive = true
         
         dismissButon.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true
-        dismissButon.leftAnchor.constraint(equalTo: guide.leftAnchor, constant: 16).isActive = true
+        dismissButon.leftAnchor.constraint(equalTo: guide.leftAnchor).isActive = true
         dismissButon.heightAnchor.constraint(equalToConstant: 40).isActive = true
         dismissButon.widthAnchor.constraint(equalToConstant: 100).isActive = true
         
@@ -110,9 +107,16 @@ class NewItemViewController: UIViewController {
     
 }
 
+
+// MARK: - UITextViewDelegate
 extension NewItemViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-        doneButton.alpha = 1
-        doneButton.isEnabled = true
+        if textView.text.count > 0 {
+            doneButton.alpha = 1
+            doneButton.isEnabled = true
+        } else {
+            doneButton.alpha = 0.5
+            doneButton.isEnabled = false
+        }
     }
 }
