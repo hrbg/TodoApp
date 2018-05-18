@@ -15,9 +15,11 @@ class NewItemViewController: UIViewController {
     lazy var doneButton: UIButton = {
         let button = UIButton()
         button.setTitle("Add", for: .normal)
+        button.isEnabled = false
+        button.alpha = 0.5
         button.backgroundColor = UIColor(named: "mainBlueColor")
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         button.layer.cornerRadius = 20
         button.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
         button.addTarget(self, action: #selector(bounce(sender:)), for: .touchUpInside)
@@ -43,7 +45,9 @@ class NewItemViewController: UIViewController {
         let textField = UITextView()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.becomeFirstResponder()
-        textField.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        textField.font = UIFont.systemFont(ofSize: 22, weight: .semibold)
+//        textField.text = "Placeholder"
+//        textField.textColor = .lightGray
         return textField
     }()
     
@@ -52,6 +56,12 @@ class NewItemViewController: UIViewController {
         
         self.view.backgroundColor = .white
         
+        newItemTextField.delegate = self
+        
+        setupViews()
+    }
+    
+    fileprivate func setupViews() {
         self.view.addSubview(newItemTextField)
         self.view.addSubview(doneButton)
         self.view.addSubview(dismissButon)
@@ -61,16 +71,15 @@ class NewItemViewController: UIViewController {
         newItemTextField.widthAnchor.constraint(equalTo: guide.widthAnchor).isActive = true
         newItemTextField.heightAnchor.constraint(equalToConstant: 200).isActive = true
         
-        doneButton.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true
-        doneButton.leftAnchor.constraint(equalTo: guide.leftAnchor, constant: 16).isActive = true
-        doneButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        doneButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        
         dismissButon.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true
-        dismissButon.rightAnchor.constraint(equalTo: guide.rightAnchor, constant: -16).isActive = true
+        dismissButon.leftAnchor.constraint(equalTo: guide.leftAnchor, constant: 16).isActive = true
         dismissButon.heightAnchor.constraint(equalToConstant: 40).isActive = true
         dismissButon.widthAnchor.constraint(equalToConstant: 100).isActive = true
         
+        doneButton.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true
+        doneButton.rightAnchor.constraint(equalTo: guide.rightAnchor, constant: -16).isActive = true
+        doneButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        doneButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
     }
     
     @objc func dismissScreen() {
@@ -99,4 +108,11 @@ class NewItemViewController: UIViewController {
         })
     }
     
+}
+
+extension NewItemViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        doneButton.alpha = 1
+        doneButton.isEnabled = true
+    }
 }
