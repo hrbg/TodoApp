@@ -110,7 +110,7 @@ class NewItemViewController: UIViewController {
 
 // MARK: - UITextViewDelegate
 extension NewItemViewController: UITextViewDelegate {
-    func textViewDidChange(_ textView: UITextView) {
+    fileprivate func enableDoneButton(_ textView: UITextView) {
         if textView.text.count > 0 {
             doneButton.alpha = 1
             doneButton.isEnabled = true
@@ -118,5 +118,16 @@ extension NewItemViewController: UITextViewDelegate {
             doneButton.alpha = 0.5
             doneButton.isEnabled = false
         }
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        enableDoneButton(textView)
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+
+        let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
+        print(newText.count)
+        return newText.count <= 140
     }
 }

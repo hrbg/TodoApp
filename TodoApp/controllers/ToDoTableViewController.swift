@@ -18,6 +18,7 @@ class ToDoTableViewController: UITableViewController {
     var connectionButtonReference:UIButton!
     var filteredTodoItems: [TodoItem]!
     let searchController = UISearchController(searchResultsController: nil)
+    var searchOnlyIncompleteItems = false
     
     @IBOutlet weak var progressView: UIProgressView!
     
@@ -32,8 +33,13 @@ class ToDoTableViewController: UITableViewController {
     
     func createSearchBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
+        let settingsImage = UIImage(named: "settings")?.withRenderingMode(.alwaysTemplate)
+        searchController.searchBar.delegate   = self
         searchController.searchResultsUpdater = self
+        searchController.searchBar.showsBookmarkButton = true
+        searchController.searchBar.setImage(settingsImage, for: .bookmark, state: .normal)
         navigationItem.searchController = searchController
+        searchController.searchBar.tintColor = .lightGray
         definesPresentationContext = true
     }
     
@@ -261,7 +267,7 @@ extension ToDoTableViewController: UISearchResultsUpdating {
 }
 
 
-// MARK - Update todo item delegate
+// MARK: - Update todo item delegate
 
 extension ToDoTableViewController: UpdatingTodoItemDelegate {
     func addedNewItem(with title: String) {
@@ -303,4 +309,32 @@ extension ToDoTableViewController: UpdatingTodoItemDelegate {
         tableView.reloadData()
     }
     
+}
+
+//MARK: - Search Bar Delegate
+extension ToDoTableViewController: UISearchBarDelegate{
+    
+    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar){
+        let actionSheet = UIAlertController(title: "Filter", message: nil, preferredStyle: .actionSheet)
+
+        let incomplete = UIAlertAction(title: "Only show incomplete", style: .default, handler: { (action:UIAlertAction) in
+            print("only show incomplete")
+            self.searchController.searchBar.tintColor = UIColor(named: "mainBlueColor")
+            self.searchOnlyIncompleteItems = true
+
+        })
+
+        let reset = UIAlertAction(title: "Reset", style: .default, handler: { (action:UIAlertAction) in
+            print("reset")
+            self.searchController.searchBar.tintColor = .lightGray
+            self.searchOnlyIncompleteItems = false
+        })
+
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        actionSheet.addAction(incomplete)
+        actionSheet.addAction(reset)
+        actionSheet.addAction(cancel)
+        present(actionSheet, animated: true, completion: nil)
+    }
 }
