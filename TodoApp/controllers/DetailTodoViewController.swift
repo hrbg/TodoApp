@@ -19,7 +19,10 @@ class DetailTodoViewController: UIViewController {
         textField.backgroundColor   = .white
         textField.setLeftPaddingPoints(10)
         textField.text = self.todoItem.title
+        textField.delegate = self
+        textField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.becomeFirstResponder()
         return textField
     }()
     
@@ -31,7 +34,7 @@ class DetailTodoViewController: UIViewController {
     }()
     
     lazy var todoAttributesView: UIView = {
-        let uiView = UIView() //frame: CGRect(x: 100, y: 200, width: self.view.bounds.width, height: 50))
+        let uiView = UIView()
         uiView.backgroundColor = .white
         uiView.translatesAutoresizingMaskIntoConstraints = false
         return uiView
@@ -56,13 +59,13 @@ class DetailTodoViewController: UIViewController {
         return stackView
     }()
     
+    // MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "To Do"
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.hidesBackButton = true
         view.backgroundColor = UIColor(named: "detailGrayColor")
-        
         setupViews()
     }
     
@@ -92,8 +95,8 @@ class DetailTodoViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(addTapped))
     }
     
-    @objc private func addTapped() {
-        print(#function)
+    // MARK: - Target functions
+    @objc fileprivate func addTapped() {
         guard let text = todoItemTextField.text else {
             return
         }
@@ -102,8 +105,23 @@ class DetailTodoViewController: UIViewController {
     }
     
     @objc fileprivate func switchChanged() {
-        print(#function)
         todoItemDelegate?.didMarkAsCompleted(at: indexPath)
+    }
+    
+    @objc fileprivate func textFieldChanged() {
+        if todoItemTextField.text?.count == 0 {
+            navigationItem.rightBarButtonItem?.isEnabled = false
+        } else {
+            navigationItem.rightBarButtonItem?.isEnabled = true
+        }
+    }
+}
+
+//MARK: - TextFieldDelegate
+extension DetailTodoViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let newText = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        return newText.count <= 140
     }
 }
 
